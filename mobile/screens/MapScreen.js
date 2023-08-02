@@ -69,6 +69,8 @@ export const MapScreen = () => {
   const [text, onChangeText] = useState("Useless Text");
   const [number, onChangeNumber] = useState("");
 
+  const [spots, setSpots] = useState(0);
+
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => ["45%"], []);
   const handleSheetChanges = useCallback((index) => {
@@ -163,8 +165,7 @@ export const MapScreen = () => {
                       </Text>
                     </View>
                     <Text m gilroyL>
-                      0/
-                      {selectedMarker.attributes.lots}
+                      {spots}/{selectedMarker.attributes.lots}
                     </Text>
                   </View>
                 </View>
@@ -191,8 +192,7 @@ export const MapScreen = () => {
                 {parkingDataSheet.attributes.price} RON/hour
               </Text>
               <Text gilroyL m>
-                Lots: 0/
-                {parkingDataSheet.attributes.lots}
+                Locuri: {spots}/{parkingDataSheet.attributes.lots}
               </Text>
               <TextField
                 fieldStyle={{
@@ -202,7 +202,7 @@ export const MapScreen = () => {
                   width: 160,
                   borderRadius: 10,
                 }}
-                placeholder={"Car numbers"}
+                placeholder={"Numere mașină"}
                 floatingPlaceholder
                 onChangeText={onChangeText}
                 maxLength={12}
@@ -223,11 +223,17 @@ export const MapScreen = () => {
                 />
                 <KSpacer />
                 <Text gilroyL m>
-                  hours
+                  ore
                 </Text>
               </View>
               <KSpacer hei={40} />
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  if (spots < parkingDataSheet.attributes.lots) {
+                    setSpots(spots + 1);
+                  }
+                }}
+              >
                 <View
                   bg-royalBlue
                   center
