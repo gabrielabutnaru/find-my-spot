@@ -169,7 +169,6 @@ export const MapScreen = () => {
             </Modal>
           )}
         </View>
-
         {/*
         {parkingDataSheet !== null && selectedMarker === null ? (
           <BottomSheetModal
