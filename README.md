@@ -9,9 +9,9 @@
 <p align="center">Say less... This minimalist Parking Space Finder app allows users to book a spot in a specific parking lot in real time.</p>
 
 <p align="center">This is what you see when you open the app.</p>
-<View align="center">
+<div align="center">
     <img src="mobile/pics/Landing.png" height="555" width="270">
-</View>
+</div>
 
 
 <p align="center">Once you press the button, you enter the Map where you can see all the parking lots.</p>
@@ -24,6 +24,7 @@
 <div align="center">
     <img src="mobile/pics/final.gif" height="555" width="270" >
 </div>
+
 ---
 
 <p align="center">This was mine and my partner, Silvia's, first hackathon. Even though we didn't meet all of our goals for this app, this experience was a good practice and great learning opportunity for the both of us, especially for Silvia since it was her first interaction with React Native, Strapi and GraphQL. &#x1F60A</p>
