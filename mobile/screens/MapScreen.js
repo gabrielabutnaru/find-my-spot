@@ -26,6 +26,7 @@ import {
 } from "@gorhom/bottom-sheet";
 import { mapStyle } from "../components/map";
 import { KBackButton } from "../components/KBackButton";
+import { TextInput } from "react-native-gesture-handler";
 
 export const client = new ApolloClient({
   uri: "http://10.0.2.2:1337/graphql",
@@ -53,14 +54,18 @@ const ALL_PARKINGS_QUERY = gql`
 
 export const MapScreen = () => {
   const [selectedMarker, setSelectedMarker] = useState(null);
-
-  const openModal = (item) => {
-    console.log(item);
-    setSelectedMarker(item);
-  };
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  async function openModal(item) {
+    //console.log(item);
+    await setSelectedMarker(item);
+  }
   const closeModal = () => {
     setSelectedMarker(null);
   };
+  useEffect(() => {
+    setIsModalVisible(selectedMarker !== null);
+  }, [selectedMarker]);
+
   const [text, onChangeText] = useState("Useless Text");
   const [number, onChangeNumber] = useState("");
 
@@ -73,7 +78,6 @@ export const MapScreen = () => {
   async function openSheet(item) {
     await setParkingDataSheet(item);
     await bottomSheetRef.current.present();
-    //console.log(parkingDataSheet)
   }
 
   const { data, loading, error } = useQuery(ALL_PARKINGS_QUERY);
@@ -107,21 +111,20 @@ export const MapScreen = () => {
                 }}
                 image={require("../assets/marker.png")}
                 onPress={() => {
-                  openModal(parking);
-                  console.log(selectedMarker);
+                  openModal(parking).then((r) => {});
                 }}
               />
             ))}
           </MapView>
-          {selectedMarker && (
+          {isModalVisible && selectedMarker && (
             <Modal
               transparent={true}
-              visible={selectedMarker !== null}
+              visible={isModalVisible}
               onRequestClose={closeModal}
             >
               <TouchableOpacity
                 onPress={() => {
-                  openSheet(selectedMarker).then((r) => closeModal);
+                  openSheet(selectedMarker).then((r) => closeModal());
                 }}
                 style={{
                   position: "absolute",
@@ -160,7 +163,7 @@ export const MapScreen = () => {
                       </Text>
                     </View>
                     <Text m gilroyL>
-                      {parkingDataSheet.attributes.lots_occupied}/
+                      0/
                       {selectedMarker.attributes.lots}
                     </Text>
                   </View>
@@ -169,8 +172,8 @@ export const MapScreen = () => {
             </Modal>
           )}
         </View>
-        {/*
-        {parkingDataSheet !== null && selectedMarker === null ? (
+
+        {parkingDataSheet !== null && (
           <BottomSheetModal
             ref={bottomSheetRef}
             index={0}
@@ -188,7 +191,7 @@ export const MapScreen = () => {
                 {parkingDataSheet.attributes.price} RON/hour
               </Text>
               <Text gilroyL m>
-                Lots: {parkingDataSheet.attributes.lots_occupied}/
+                Lots: 0/
                 {parkingDataSheet.attributes.lots}
               </Text>
               <TextField
@@ -245,9 +248,7 @@ export const MapScreen = () => {
               </TouchableOpacity>
             </View>
           </BottomSheetModal>
-        ) : (
-          []
-        )}*/}
+        )}
         <KBackButton />
       </BottomSheetModalProvider>
     </>
