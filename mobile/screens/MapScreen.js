@@ -1,4 +1,4 @@
-import MapView, { Marker } from "react-native-maps";
+import MapView, {Marker, PROVIDER_GOOGLE} from "react-native-maps";
 import { Image, Text, TouchableOpacity, View } from "react-native-ui-lib";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
@@ -6,7 +6,7 @@ import { ApolloClient, gql, InMemoryCache, useQuery } from "@apollo/client";
 import React, { useState } from "react";
 
 export const client = new ApolloClient({
-  uri: "http://10.0.2.2:1337/graphql",
+  uri: "http://127.0.0.1:1337/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -228,6 +228,7 @@ export const MapScreen = () => {
       <View flex center>
         <MapView
           style={{ width: "100%", height: "100%" }}
+          provider={PROVIDER_GOOGLE}
           initialRegion={{
             latitude: 45.7537,
             longitude: 21.2257,
