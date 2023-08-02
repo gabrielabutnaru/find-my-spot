@@ -6,11 +6,20 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { StatusBar } from "react-native";
 import { ApolloProvider } from "@apollo/client";
+import { useFonts } from "expo-font";
 
 configTheme();
 
 const Stack = createNativeStackNavigator();
 export default function App() {
+  const [loaded] = useFonts({
+    GilroyL: require("./assets/Gilroy-Light.otf"),
+    GilroyB: require("./assets/Gilroy-ExtraBold.otf"),
+  });
+
+  if (!loaded) {
+    return null;
+  }
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar style={"light"} />

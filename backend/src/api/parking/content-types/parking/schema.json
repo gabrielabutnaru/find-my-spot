@@ -35,6 +35,10 @@
     "price": {
       "type": "decimal",
       "required": true
+    },
+    "lots_occupied": {
+      "type": "integer",
+      "required": true
     }
   }
 }
