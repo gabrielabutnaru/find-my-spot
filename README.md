@@ -4,9 +4,6 @@
 
 ## Piratzii - Hackathon - 1st Edition
 
----
-
-### Description
 <p align="center">Have you ever spent what feels like an eternity looking for a parking spot? How many times have you been late to work or school simply because you couldn't find one?
 </p>
 <p align="center">Say less... This minimalist Parking Space Finder app allows users to book a spot in a specific parking lot in real time.</p>
