@@ -27,4 +27,4 @@
 
 ---
 
-<p align="center">This was mine and my partner, Silvia's, first hackathon. Even though we didn't meet all of our goals for this app, this experience was a good practice and great learning opportunity for the both of us, especially for Silvia since it was her first interaction with React Native, Strapi and GraphQL. &#x1F60A</p>
+<p align="center">This was mine and my partner, Silvia's, first hackathon. Even though we didn't meet all of our goals for this app, this experience was a good practice and a great learning opportunity for the both of us, especially for Silvia since it was her first interaction with React Native, Strapi and GraphQL. &#x1F60A</p>
